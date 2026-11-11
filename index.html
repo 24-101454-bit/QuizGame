@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeQuest - Typography Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="shell">
+
+        <div class="topbar"></div>
+
+        
+        <section class="screen active" id="welcome">
+
+            <div class="spark s1">✦</div>
+            <div class="spark s2">✧</div>
+
+            <h1 class="brand">TypeQuest</h1>
+
+            <div class="subbrand">
+                The Ultimate Typography Challenge
+            </div>
+
+            <p class="intro">
+                Test your design eye! Spot the best choices, find the mistakes,
+                and learn about web typography.
+            </p>
+
+            <button class="primary" onclick="showScreen('how')">
+                Start Game →
+            </button>
+
+        </section>
+
+
+        
+        <section class="screen" id="how">
+
+            <button class="back" onclick="showScreen('welcome')">
+                ← Back
+            </button>
+
+            <h2 class="section-title">How to Play?</h2>
+
+            <p class="section-copy">
+                Look closely and choose the strongest typography design.
+            </p>
+
+            <div class="rules">
+
+                <div class="rule">
+                    <b>▧</b>
+                    <p>Compare the two designs.</p>
+                </div>
+
+                <div class="rule">
+                    <b>Aa</b>
+                    <p>Look at spacing and readability.</p>
+                </div>
+
+                <div class="rule">
+                    <b>✓</b>
+                    <p>Choose the better design.</p>
+                </div>
+
+                <div class="rule">
+                    <b>★</b>
+                    <p>Earn points and finish the levels.</p>
+                </div>
+
+            </div>
+
+            <p class="section-copy">
+                3 Levels · 15 Questions Each · 45 Questions Total
+            </p>
+
+            <button class="primary" onclick="showScreen('levels')">
+                Let's Go! →
+            </button>
+
+        </section>
+
+
+       
+        <section class="screen" id="levels">
+
+            <button class="back" onclick="showScreen('how')">
+                ← Back
+            </button>
+
+            <h2 class="section-title">Choose Your Level</h2>
+
+            <p class="section-copy">
+                Start with Beginner and work your way up.
+            </p>
+
+            <div class="levels">
+
+                <div class="level">
+                    <div>★</div>
+
+                    <h3>
+                        Level 1<br>
+                        Beginner
+                    </h3>
+
+                    <p>15 Questions · Easy</p>
+
+                    <button onclick="startLevel(0)">
+                        Start Level →
+                    </button>
+                </div>
+
+
+                <div class="level">
+                    <div>★★</div>
+
+                    <h3>
+                        Level 2<br>
+                        Intermediate
+                    </h3>
+
+                    <p>15 Questions · Medium</p>
+
+                    <button onclick="startLevel(1)">
+                        Start Level →
+                    </button>
+                </div>
+
+
+                <div class="level">
+                    <div>★★★</div>
+
+                    <h3>
+                        Level 3<br>
+                        Advanced
+                    </h3>
+
+                    <p>15 Questions · Hard</p>
+
+                    <button onclick="startLevel(2)">
+                        Start Level →
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        
+        <section class="screen" id="game">
+
+            <div class="game-head">
+
+                <div id="levelLabel">
+                    Level 1
+                </div>
+
+                <div id="questionLabel">
+                    Question 1 / 15
+                </div>
+
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div class="score">
+                    Score: <strong id="score">0</strong> ★
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <small id="questionTopic">
+                    Typography challenge
+                </small>
+
+                <h2 id="questionText"></h2>
+
+            </div>
+
+
+            <div class="options" id="options"></div>
+
+
+            <div class="feedback" id="feedback">
+
+                <h3 id="feedbackTitle"></h3>
+
+                <p id="feedbackText"></p>
+
+                <button class="primary" id="nextButton" onclick="nextQuestion()">
+                    Next Question →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        
+        <section class="screen" id="levelResult">
+
+            <div class="result-icon">🏆</div>
+
+            <h2 class="section-title" id="levelResultTitle">
+                Level Complete!
+            </h2>
+
+            <p class="section-copy" id="levelResultCopy"></p>
+
+            <div class="result-stats">
+
+                <div class="stat">
+                    <strong id="levelScore">0</strong>
+                    <div>Correct</div>
+                </div>
+
+                <div class="stat">
+                    <strong id="levelPercent">0%</strong>
+                    <div>Accuracy</div>
+                </div>
+
+            </div>
+
+            <button class="primary" id="levelContinue" onclick="continueAfterLevel()">
+                Continue →
+            </button>
+
+        </section>
+
+
+        
+        <section class="screen" id="finalResult">
+
+            <div class="result-icon">🏆</div>
+
+            <h2 class="section-title">
+                Game Complete!
+            </h2>
+
+            <p class="section-copy">
+                You have finished the TypeQuest challenge.
+            </p>
+
+            <div class="result-stats">
+
+                <div class="stat">
+                    <strong id="finalCorrect">0</strong>
+                    <div>Correct</div>
+                </div>
+
+                <div class="stat">
+                    <strong id="finalWrong">0</strong>
+                    <div>Incorrect</div>
+                </div>
+
+                <div class="stat">
+                    <strong id="finalPercent">0%</strong>
+                    <div>Score</div>
+                </div>
+
+            </div>
+
+            <p class="section-copy" id="finalMessage"></p>
+
+            <button class="primary" onclick="restartGame()">
+                Restart Game ↻
+            </button>
+
+        </section>
+
+    </div>
+
+
+    <script>
+
+        
+        var questions = [
+
+            {
+                "q": "Which heading has the clearest visual hierarchy?",
+                "a": {
+                    "title": "Welcome to Studio North",
+                    "body": "A clear headline, a short supporting sentence, and one focused action.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "WELCOME TO STUDIO NORTH",
+                    "body": "Everything is the same size and weight, so nothing stands out.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A clear size and weight contrast makes the heading the first thing users notice.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which paragraph is easier to read?",
+                "a": {
+                    "title": "Thoughtful design, made simple",
+                    "body": "OUR TEAM CREATES USEFUL DIGITAL EXPERIENCES WITH CLARITY AND CARE",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Thoughtful design, made simple",
+                    "body": "Our team creates useful digital experiences with clarity and care.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Sentence case and comfortable line length are easier to scan than long all-caps copy.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which button label is more readable?",
+                "a": {
+                    "title": "Explore the collection",
+                    "body": "Clear action label with comfortable padding and strong contrast.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "EXPLORETHECOLLECTION",
+                    "body": "Letters run together and the label has almost no breathing room.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A readable label needs spaces, sufficient padding, and clear contrast.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which text treatment creates better contrast?",
+                "a": {
+                    "title": "Make every visit count",
+                    "body": "Pale grey text on a slightly lighter grey surface.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Make every visit count",
+                    "body": "Dark text on a light surface with strong contrast.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Text needs enough contrast against its background to remain legible.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which font pairing feels more consistent?",
+                "a": {
+                    "title": "Avenir Display + Avenir Text",
+                    "body": "A coordinated sans-serif family with distinct display and reading weights.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Display Serif + Comic Script + Condensed Sans",
+                    "body": "Three unrelated styles compete for attention in one small interface.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A restrained pairing creates a consistent visual voice.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which navigation is easier to scan?",
+                "a": {
+                    "title": "HOME WORKABOUTCONTACT",
+                    "body": "Uneven spacing and mixed alignment make the links feel crowded.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Home   Work   About   Contact",
+                    "body": "Short labels use consistent size, spacing, and alignment.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Consistent spacing and alignment help users scan navigation quickly.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which line spacing is more comfortable for body text?",
+                "a": {
+                    "title": "Design should feel effortless.",
+                    "body": "A little extra leading separates lines and improves reading flow.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Design should feel effortless.",
+                    "body": "Lines are compressed and overlap visually.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Body text usually benefits from leading greater than its font size.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which heading uses letter spacing more appropriately?",
+                "a": {
+                    "title": "C R E A T I V E  S T U D I O",
+                    "body": "Excessive tracking breaks the word into disconnected letters.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "CREATIVE STUDIO",
+                    "body": "A modest tracking adjustment gives the uppercase label room to breathe.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Tracking should support the type style, not make words difficult to recognize.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which layout has a better type scale?",
+                "a": {
+                    "title": "Discover your next idea",
+                    "body": "Large headline, medium subheading, smaller body copy, and compact labels.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Discover your next idea",
+                    "body": "Headline, paragraph, and labels all appear almost identical in size.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A clear type scale communicates importance and creates structure.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which text alignment suits this short hero message?",
+                "a": {
+                    "title": "Design for what comes next",
+                    "body": "Each line starts at a different position without a clear alignment edge.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Design for what comes next",
+                    "body": "A centered headline and supporting line form one balanced hero group.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Consistent alignment makes related text feel like one intentional group.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which font weight is best for a long paragraph?",
+                "a": {
+                    "title": "Good ideas deserve room to grow.",
+                    "body": "Regular weight keeps the paragraph comfortable for continuous reading.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Good ideas deserve room to grow.",
+                    "body": "Extra-bold weight makes every line visually heavy.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Regular or book weights are generally more comfortable for body copy.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which text size is more suitable for small interface labels?",
+                "a": {
+                    "title": "EMAIL ADDRESS",
+                    "body": "Tiny, low-contrast text that is difficult to read.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "EMAIL ADDRESS",
+                    "body": "A compact but readable label with enough size and contrast.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Small labels still need a readable size and sufficient contrast.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which card title is easier to understand?",
+                "a": {
+                    "title": "Plan your next trip",
+                    "body": "A clear title uses natural word spacing and a familiar font shape.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Planyournexttrip",
+                    "body": "Letters are crowded together and word boundaries disappear.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Correct kerning and normal word spacing preserve legibility.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which design uses a more consistent type system?",
+                "a": {
+                    "title": "Features  /  Pricing  /  Support",
+                    "body": "Every navigation item uses a different typeface and weight.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Features  /  Pricing  /  Support",
+                    "body": "The same family, weights, and label sizes are reused across components.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Consistency across interface elements makes a product feel cohesive.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which hero headline is easier to read on a phone?",
+                "a": {
+                    "title": "Make space for better ideas",
+                    "body": "A short headline wraps naturally into a balanced two-line block.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "MAKE SPACE FOR BETTER IDEAS NOW TODAY",
+                    "body": "An overly long headline is squeezed into a narrow column.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Responsive typography should reflow naturally without cramped lines.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which design gives the paragraph a more readable line length?",
+                "a": {
+                    "title": "Ideas into impact",
+                    "body": "A very wide paragraph stretches across the entire screen.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Ideas into impact",
+                    "body": "A medium-width text column keeps each line easy to follow.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Moderate line lengths reduce eye travel and make reading easier.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which font pairing creates a stronger editorial hierarchy?",
+                "a": {
+                    "title": "The Modern Journal",
+                    "body": "Expressive serif display heading paired with a neutral sans-serif for body text.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "The Modern Journal",
+                    "body": "Two decorative display faces compete in both headings and paragraphs.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A display face and a restrained text face can create contrast without conflict.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which interface handles long navigation labels better?",
+                "a": {
+                    "title": "Our approach Case studies Get in touch",
+                    "body": "Labels collide and wrap unpredictably in the navigation bar.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Our approach   Case studies   Get in touch",
+                    "body": "Labels have enough room and remain on one clear baseline.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Navigation needs deliberate spacing and responsive behavior.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which design has better kerning in its large title?",
+                "a": {
+                    "title": "AVANT",
+                    "body": "The letter pairs sit optically balanced, especially around A and V.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "AVANT",
+                    "body": "The A and V collide while other letters are awkwardly far apart.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Optical kerning corrects uneven spaces between particular letter pairs.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which text style makes links easiest to identify?",
+                "a": {
+                    "title": "Read the full story",
+                    "body": "The link looks exactly like surrounding paragraph text.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Read the full story →",
+                    "body": "A consistent accent color and underline clearly distinguish the link.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Links should have a visible, consistent treatment beyond their position.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which layout uses font weight with more purpose?",
+                "a": {
+                    "title": "Your workspace, organized",
+                    "body": "Bold is reserved for the heading and key labels; body copy stays regular.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Your workspace, organized",
+                    "body": "Every heading, label, and paragraph is bold, removing hierarchy.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Weight contrast should signal importance rather than flatten the hierarchy.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which design is more accessible for text over imagery?",
+                "a": {
+                    "title": "Create without limits",
+                    "body": "White text sits directly over bright, detailed parts of the photo.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Create without limits",
+                    "body": "A subtle dark overlay keeps white text readable over the photo.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Text over images needs a reliable contrast treatment across the image area.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which responsive heading behavior is better?",
+                "a": {
+                    "title": "A better way to work",
+                    "body": "The heading scales down smoothly and keeps a balanced line break on mobile.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "A better way to work",
+                    "body": "The desktop-sized heading overflows beyond the mobile viewport.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Fluid type sizing and sensible wrapping prevent overflow on smaller screens.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which design separates heading and body copy more effectively?",
+                "a": {
+                    "title": "Designed around people",
+                    "body": "The paragraph touches the heading and shares nearly the same size.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Designed around people",
+                    "body": "A clear gap and size difference separate the heading from the paragraph.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Spacing and scale make the relationship between text elements clear.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which typography system is more suitable for a dashboard?",
+                "a": {
+                    "title": "Overview  /  Activity  /  Reports",
+                    "body": "A functional sans-serif system uses consistent numeric and label styles.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Overview  /  Activity  /  Reports",
+                    "body": "Decorative scripts and inconsistent numeral styles reduce scan speed.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Dashboards benefit from predictable, highly legible typography.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which design uses uppercase text more effectively?",
+                "a": {
+                    "title": "NEW COLLECTION",
+                    "body": "Long paragraphs are set in uppercase with wide letter spacing.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "NEW COLLECTION",
+                    "body": "Uppercase is limited to a short eyebrow label with moderate tracking.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Uppercase works best in short labels, not extended reading passages.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which pricing card communicates the most important information first?",
+                "a": {
+                    "title": "Studio Plan  $24 / month",
+                    "body": "Price is prominent, plan name is clear, and details are secondary.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Studio Plan  $24 / month",
+                    "body": "Tiny price is buried under a large block of equally weighted details.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A clear information hierarchy makes the key decision easy to find.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which design maintains readable text over a colored background?",
+                "a": {
+                    "title": "Your next chapter starts here",
+                    "body": "Light lavender text on a saturated purple background has weak contrast.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Your next chapter starts here",
+                    "body": "Dark text on a pale lavender surface provides strong contrast.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Contrast should be checked for every text and surface color combination.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which type scale feels more systematic across the page?",
+                "a": {
+                    "title": "H1  /  H2  /  Body  /  Caption",
+                    "body": "A consistent modular scale creates predictable relationships between styles.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "H1  /  H2  /  Body  /  Caption",
+                    "body": "Sizes jump randomly from section to section without a pattern.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A repeatable type scale improves consistency and makes interfaces easier to maintain.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which mobile article layout is more comfortable to read?",
+                "a": {
+                    "title": "The art of slowing down",
+                    "body": "Small text, tight leading, and a wide edge-to-edge paragraph feel dense.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "The art of slowing down",
+                    "body": "Readable body size, relaxed leading, and a narrow column fit the screen.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Mobile reading needs sufficient text size, line spacing, and manageable line length.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which design best supports a complex editorial homepage?",
+                "a": {
+                    "title": "The Future of Form",
+                    "body": "A distinctive display face is paired with a highly readable text family and clear section levels.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "The Future of Form",
+                    "body": "Several expressive typefaces are used at similar sizes across every section.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Complex pages need a controlled type system that balances personality with clarity.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which variable-font approach is more effective?",
+                "a": {
+                    "title": "One family, many roles",
+                    "body": "Every component loads unrelated font files with inconsistent visual metrics.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "One family, many roles",
+                    "body": "A variable family adjusts weight and width deliberately across headings and UI labels.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Variable fonts can provide a flexible, consistent system when used with defined styles.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which design handles localization and longer translated labels better?",
+                "a": {
+                    "title": "Explore our services",
+                    "body": "The layout allows labels to expand and wrap without overlapping adjacent controls.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Explore our services",
+                    "body": "Fixed-width navigation clips longer translated words and overlaps buttons.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Flexible containers and resilient typography support content expansion in localization.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which typography choice improves data comparison in a finance dashboard?",
+                "a": {
+                    "title": "$1,250.00   $980.50",
+                    "body": "Proportional numerals create uneven digit widths in aligned figures.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "$1,250.00   $980.50",
+                    "body": "Tabular numerals align digits in columns for quick comparison.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Tabular figures keep numbers aligned and easier to compare.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which design creates the clearest hierarchy for a dense settings page?",
+                "a": {
+                    "title": "Account settings",
+                    "body": "Section headings, field labels, helper text, and errors each have distinct roles.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Account settings",
+                    "body": "All text roles share the same size, color, and weight.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Dense interfaces require clear typographic roles and consistent hierarchy.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which type treatment is more robust for accessibility?",
+                "a": {
+                    "title": "Read the guide",
+                    "body": "The link is indicated only by a slight color shift from body text.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Read the guide",
+                    "body": "The link has an underline and a distinct color, so meaning is not color-only.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Do not rely on color alone to communicate interactive states.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which responsive type strategy is more reliable?",
+                "a": {
+                    "title": "Fluid headline sizing",
+                    "body": "A clamp-like scale grows smoothly between mobile and desktop breakpoints.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Fluid headline sizing",
+                    "body": "A single fixed 72px headline is used at every viewport width.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Fluid sizing adapts type proportionally while keeping limits for different screens.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which design is better for a multilingual interface with mixed scripts?",
+                "a": {
+                    "title": "Welcome  مرحباً  Bienvenue",
+                    "body": "Fallback glyphs have mismatched baselines, weights, and line heights.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Welcome  مرحباً  Bienvenue",
+                    "body": "The chosen families support the required scripts and use compatible visual proportions.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "A multilingual type system needs script coverage and carefully matched fallback metrics.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which heading treatment provides the best optical balance?",
+                "a": {
+                    "title": "A New Perspective",
+                    "body": "Spacing is adjusted optically around unusual shapes and punctuation.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "A New Perspective",
+                    "body": "Automatic spacing leaves visibly uneven gaps around punctuation and angled forms.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Optical adjustments can improve perceived balance beyond mathematically equal spacing.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which design uses typographic contrast without sacrificing cohesion?",
+                "a": {
+                    "title": "Objects of Meaning",
+                    "body": "A serif, geometric sans, handwritten script, and display stencil all compete.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Objects of Meaning",
+                    "body": "A restrained serif/sans pairing shares compatible proportions and clear roles.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Contrast is effective when typefaces have distinct roles and compatible characteristics.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which form design gives validation messages the clearest priority?",
+                "a": {
+                    "title": "Password must contain 8 characters",
+                    "body": "Error text is close to the field, clearly labeled, and visually distinct.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Password must contain 8 characters",
+                    "body": "The error is tiny, distant from the field, and indistinguishable from helper text.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Validation needs proximity, clear wording, and a distinct but accessible visual treatment.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which design is more resilient when content changes dynamically?",
+                "a": {
+                    "title": "Your personalized weekly report",
+                    "body": "Fixed-height text boxes crop longer headings and body copy.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Your personalized weekly report",
+                    "body": "Text containers grow with content and preserve spacing and hierarchy.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Content-driven layouts avoid clipping when text length changes.",
+                "theme": "rose"
+            },
+
+            {
+                "q": "Which typographic approach best supports a long-form reading experience?",
+                "a": {
+                    "title": "A Field Guide to Better Living",
+                    "body": "Comfortable measure, generous leading, restrained line length, and clear subheads.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "A Field Guide to Better Living",
+                    "body": "Long lines, compressed leading, and frequent decorative type changes interrupt reading.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "Long-form typography should prioritize sustained comfort and a predictable reading rhythm.",
+                "theme": "violet"
+            },
+
+            {
+                "q": "Which design uses emphasis most strategically in a product interface?",
+                "a": {
+                    "title": "Your order is confirmed",
+                    "body": "Every word is bold, italic, underlined, and uppercase at once.",
+                    "quality": "weak"
+                },
+                "b": {
+                    "title": "Your order is confirmed",
+                    "body": "Bold weight highlights the status and key details while supporting copy stays regular.",
+                    "quality": "strong"
+                },
+                "answer": "B",
+                "why": "Emphasis works when it is selective and consistent, not applied to everything.",
+                "theme": "blue"
+            },
+
+            {
+                "q": "Which design demonstrates a complete, scalable type system?",
+                "a": {
+                    "title": "Northstar Design System",
+                    "body": "Named text styles define display, heading, body, label, and caption roles across breakpoints.",
+                    "quality": "strong"
+                },
+                "b": {
+                    "title": "Northstar Design System",
+                    "body": "Each screen uses one-off sizes with no shared roles or responsive rules.",
+                    "quality": "weak"
+                },
+                "answer": "A",
+                "why": "A scalable system uses reusable styles, defined roles, and responsive behavior.",
+                "theme": "rose"
+            }
+
+        ];
+
+
+        
+        var levelNames = ["Beginner", "Intermediate", "Advanced"];
+
+        var level = 0;
+        var questionIndex = 0;
+        var score = 0;
+        var levelCorrect = 0;
+        var totalCorrect = 0;
+        var totalAnswered = 0;
+        var locked = false;
+
+
+       
+        function showScreen(screenId) {
+
+            var screens = document.querySelectorAll(".screen");
+
+            for (var i = 0; i < screens.length; i++) {
+                screens[i].classList.remove("active");
+            }
+
+            document.getElementById(screenId).classList.add("active");
+
+            window.scrollTo(0, 0);
+        }
+
+
+       
+        function startLevel(number) {
+
+            level = number;
+            questionIndex = 0;
+            levelCorrect = 0;
+
+            showScreen("game");
+            showQuestion();
+        }
+
+
+        function showQuestion() {
+
+            locked = false;
+
+            var question = questions[level * 15 + questionIndex];
+
+            document.getElementById("levelLabel").textContent =
+                "Level " + (level + 1) + " - " + levelNames[level];
+
+            document.getElementById("questionLabel").textContent =
+                "Question " + (questionIndex + 1) + " / 15";
+
+            document.getElementById("score").textContent = score;
+
+            document.getElementById("questionText").textContent = question.q;
+
+            document.getElementById("questionTopic").textContent =
+                ["Typography foundations", "Interface typography", "Advanced type systems"][level];
+
+            document.getElementById("progressBar").style.width =
+                (questionIndex / 15 * 100) + "%";
+
+            document.getElementById("feedback").className = "feedback";
+
+            var optionsBox = document.getElementById("options");
+
+            optionsBox.innerHTML = "";
+
+            addOption("A", question.a, question);
+            addOption("B", question.b, question);
+        }
+
+
+        
+        function addOption(letter, design, question) {
+
+            var optionsBox = document.getElementById("options");
+
+            var button = document.createElement("button");
+
+            button.className = "option";
+            button.type = "button";
+
+            button.innerHTML =
+                '<div class="option-label">' +
+                    '<div>Design ' + letter + '</div>' +
+                    '<div>↗</div>' +
+                '</div>' +
+
+                '<div class="preview ' + design.quality + ' theme-' + question.theme + '">' +
+
+                    '<div class="preview-top">' +
+                        '<div class="preview-logo">north.</div>' +
+                        '<div class="preview-nav">Studio　 Work　 About</div>' +
+                        '<div>Menu ☰</div>' +
+                    '</div>' +
+
+                    '<div class="preview-tag">Ideas · Design · Digital</div>' +
+
+                    '<h3></h3>' +
+
+                    '<p></p>' +
+
+                    '<div class="preview-cta">Discover more →</div>' +
+
+                    '<div class="preview-foot">✦ Thoughtful design　 ✦ Made for people</div>' +
+
+                '</div>' +
+
+                '<div class="option-desc">' +
+                    'Compare the design, spacing and readability.' +
+                '</div>';
+
+
+            button.querySelector("h3").textContent = design.title;
+
+            button.querySelector("p").textContent = design.body;
+
+
+            button.onclick = function () {
+                chooseAnswer(letter, button);
+            };
+
+
+            optionsBox.appendChild(button);
+        }
+
+
+    
+        function chooseAnswer(answer, button) {
+
+            if (locked) {
+                return;
+            }
+
+            locked = true;
+
+            totalAnswered++;
+
+            var question = questions[level * 15 + questionIndex];
+
+            var correct = answer === question.answer;
+
+            var options = document.querySelectorAll(".option");
+
+
+            for (var i = 0; i < options.length; i++) {
+                options[i].disabled = true;
+            }
+
+
+            button.classList.add("selected");
+
+
+            var feedback = document.getElementById("feedback");
+
+            feedback.className = "feedback show";
+
+
+            if (correct) {
+
+                feedback.classList.add("good");
+
+                document.getElementById("feedbackTitle").textContent =
+                    "Correct! Great job.";
+
+                score++;
+                levelCorrect++;
+                totalCorrect++;
+
+            } else {
+
+                feedback.classList.add("bad");
+
+                document.getElementById("feedbackTitle").textContent =
+                    "Not quite!";
+
+            }
+
+
+            var message = correct
+                ? "You chose the better design. "
+                : "The correct answer was Design " + question.answer + ". ";
+
+
+            document.getElementById("feedbackText").textContent =
+                message + question.why;
+
+
+            document.getElementById("score").textContent = score;
+
+
+            document.getElementById("progressBar").style.width =
+                ((questionIndex + 1) / 15 * 100) + "%";
+
+
+            if (questionIndex === 14) {
+
+                document.getElementById("nextButton").textContent =
+                    "See Results →";
+
+            } else {
+
+                document.getElementById("nextButton").textContent =
+                    "Next Question →";
+
+            }
+
+        }
+
+
+        function nextQuestion() {
+
+            if (!locked) {
+                return;
+            }
+
+            if (questionIndex < 14) {
+
+                questionIndex++;
+
+                showQuestion();
+
+            } else {
+
+                showLevelResult();
+
+            }
+
+        }
+
+
+      
+        function showLevelResult() {
+
+            document.getElementById("levelResultTitle").textContent =
+                "Level " + (level + 1) + " Complete!";
+
+            document.getElementById("levelResultCopy").textContent =
+                "You completed the " + levelNames[level] + " level.";
+
+            document.getElementById("levelScore").textContent =
+                levelCorrect + " / 15";
+
+            document.getElementById("levelPercent").textContent =
+                Math.round(levelCorrect / 15 * 100) + "%";
+
+
+            if (level === 2) {
+
+                document.getElementById("levelContinue").textContent =
+                    "View Final Results →";
+
+            } else {
+
+                document.getElementById("levelContinue").textContent =
+                    "Next Level →";
+
+            }
+
+
+            showScreen("levelResult");
+        }
+
+
+        
+        function continueAfterLevel() {
+
+            if (level < 2) {
+
+                startLevel(level + 1);
+
+            } else {
+
+                document.getElementById("finalCorrect").textContent =
+                    totalCorrect;
+
+                document.getElementById("finalWrong").textContent =
+                    totalAnswered - totalCorrect;
+
+                document.getElementById("finalPercent").textContent =
+                    Math.round(totalCorrect / 45 * 100) + "%";
+
+
+                if (totalCorrect >= 38) {
+
+                    document.getElementById("finalMessage").textContent =
+                        "Excellent! You are becoming a typography pro.";
+
+                } else if (totalCorrect >= 25) {
+
+                    document.getElementById("finalMessage").textContent =
+                        "Great effort! Keep practicing.";
+
+                } else {
+
+                    document.getElementById("finalMessage").textContent =
+                        "Good start! Review the answers and try again.";
+
+                }
+
+
+                showScreen("finalResult");
+
+            }
+
+        }
+
+
+        function restartGame() {
+
+            score = 0;
+            totalCorrect = 0;
+            totalAnswered = 0;
+            levelCorrect = 0;
+
+            showScreen("welcome");
+
+        }
+
+    </script>
+
+
+</body>
+</html>
